@@ -1,12 +1,14 @@
 import mongoose, { Schema, Document} from "mongoose"
 import bcrypt from 'bcrypt';
+import { ITask } from '../model/Task';
 
 
 export interface IUser extends Document
 {
     email : string,
     username : string,
-    password : string
+    password : string,
+    tasks : ITask[]
 }
 
 

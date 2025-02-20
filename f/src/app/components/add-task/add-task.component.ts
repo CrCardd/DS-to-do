@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TaskService } from '../../services/task.service';
 
@@ -13,6 +13,9 @@ export class AddTaskComponent {
     private service : TaskService
   ) { }
 
+  @Output()
+  onSendClick = new EventEmitter()
+  
   title : string = ""
   description : string = ""
 
