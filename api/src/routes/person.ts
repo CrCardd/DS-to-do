@@ -1,6 +1,5 @@
 import express, { Request, Response, Router } from 'express';
-import * as mock from '../../mock';
-import Person from '../model/Person';
+import Person from '../model/User';
 
 
 const router: Router = express.Router();
@@ -13,7 +12,7 @@ router
     try{
         const person = new Person({name, age})
         await person.save()
-        res.status(200).send(`Pessoa recebida com sucesso!`);
+        res.status(200).send({message : `Pessoa recebida com sucesso!`});
     }
     catch(e)
     {
