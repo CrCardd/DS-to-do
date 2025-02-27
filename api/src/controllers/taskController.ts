@@ -1,11 +1,8 @@
-import express, { Request, Response, Router } from 'express';
+import { Request, Response } from 'express';
 import Task from '../model/Task';
 
-
-const router: Router = express.Router();
-
-router
-    .post('/task', async (req: Request, res: Response) => {
+export default class TaskController {
+    static async create(req : Request, res : Response) {
         const { title, description, complete } = req.body
         try{
             const task = new Task({title, description, complete})
@@ -16,8 +13,9 @@ router
         {
             res.status(500).send(`Erro ${e}`);
         }
-    })
-    .get('/task', async (req: Request, res: Response) => {
+    }
+
+    static async search(req : Request, res : Response) {
         const { query, page, limit } = req.body
         try{
             const tasks = await Task.find()
@@ -27,6 +25,5 @@ router
         {
             res.status(500).send(`Erro ${e}`);
         }
-    })
-
-export default router;
+    }
+}

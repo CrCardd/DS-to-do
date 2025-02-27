@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from '../models/User';
 import { Task } from '../models/Task';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 export interface TaskData {
   tasks : Task[],
@@ -24,8 +24,10 @@ export class TaskService {
   
   post(task: Task) {
     return this.http.post<User>(this.api + '/task', task, {observe: 'response'})
-      .subscribe(res => {
-        console.log(res)
-      })
+      .pipe(map(res => {
+          return res.ok
+      }))
   }
+
+
 }

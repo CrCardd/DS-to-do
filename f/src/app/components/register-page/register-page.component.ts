@@ -29,9 +29,11 @@ export class RegisterPageComponent {
           tasks : []
         }
       )
-      console.log(res)
-      if(!res)
-        return
-      this.router.navigate([''])
+      .subscribe(
+        (res : boolean) => {
+          if(res)
+            this.router.navigate(['/'])
+        }
+      )
     }
 }

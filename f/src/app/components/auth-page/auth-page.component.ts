@@ -2,6 +2,7 @@ import { Component, EventEmitter } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-auth-page',
@@ -21,10 +22,14 @@ export class AuthPageComponent {
   password : string = "";
 
   sendLogin() {
-    let res = this.service.get(this.login, this.password)
-    if(!res)
-      return;
+    this.service.auth(this.login, this.password).subscribe(
+      (data : {body : any, ok : boolean}) => {
+          if(!data.ok)
+            return;
 
-    this.router.navigate(['/home'])
+          sessionStorage.setItem('token', data.body.token)
+          this.router.navigate(['/home'])
+        }
+    )
   }
 }

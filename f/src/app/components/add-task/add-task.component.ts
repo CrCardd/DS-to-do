@@ -20,6 +20,13 @@ export class AddTaskComponent {
   description : string = ""
 
   addNew() {
-    this.service.post({title : this.title, description : this.description, complete : false})
+    this.service.post({title : this.title, description : this.description, complete : false}).subscribe(
+      (ok : boolean) => {
+        if(!ok)
+          return
+        console.log("INSERIU")
+      }
+    )
+    this.onSendClick.emit(1);
   }
 }

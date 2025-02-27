@@ -1,13 +1,13 @@
 import { Express } from 'express';
 import express from 'express'
-import person from './person.ts'
-import auth from './auth.ts'
-import task from './task.ts'
+import userRoutes from './userRoutes.ts'
+import authRoutes from './authRoutes.ts'
+import taskRoutes from './taskRoutes.ts'
 
 export default function (app: Express) {
     app
     .use(express.json())
-    .use('', person)
-    .use('', auth)
-    .use('', task)
+    .use('/user', userRoutes)
+    .use('/auth', authRoutes)
+    .use('/task', taskRoutes)
 }
