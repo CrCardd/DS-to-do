@@ -3,6 +3,7 @@ import mongoose, { Schema, Document} from "mongoose"
 
 export interface ITask extends Document
 {
+    idUser : string,
     title : string,
     description : string,
     complete : boolean
@@ -11,6 +12,7 @@ export interface ITask extends Document
 
 
 const TaskSchema: Schema<ITask> = new Schema({
+    idUser: {type: String, required: false},
     title: {type: String, required: true},
     description: {type: String, required: true},
     complete : {type: Boolean, required: true}

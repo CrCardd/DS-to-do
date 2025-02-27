@@ -14,6 +14,7 @@ export default class AuthController {
         try{
             const user = new User({email,username,password})
             user.save()
+            console.log("Usuário registrado.")
             res.status(200).send({message : 'Pessoa recebida com sucesso!'});
         }
         catch(e)
@@ -33,24 +34,25 @@ export default class AuthController {
                 return;
             }
             if(!bcrypt.compareSync(password, user.password))
-            {
-                console.log("Senha incorreta");
-                res.status(401).send({ message : "Senha incorreta"});
-                return;
-            }
-
+                {
+                    console.log("Senha incorreta");
+                    res.status(401).send({ message : "Senha incorreta"});
+                    return;
+                }
+                
             const secret = process.env.SECRET;
-            const token = jwt.sign(
-                { id: user.id }, 
-                secret as string,
-                {expiresIn: '2 days',}
-            );
-
+                const token = jwt.sign(
+                    { id: user.id }, 
+                    secret as string,
+                    {expiresIn: '2 days',}
+                );
+                
             console.log("Usuário logado com sucesso");
             res.status(200).send({token : token});
         }
         catch(e)
         {
+            console.log(e)
             res.status(500).send({message : `Erro ${e}`});
         }
     }

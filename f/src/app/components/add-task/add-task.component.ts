@@ -20,11 +20,10 @@ export class AddTaskComponent {
   description : string = ""
 
   addNew() {
-    this.service.post({_id: '', title : this.title, description : this.description, complete : false}).subscribe(
+    this.service.post({_id: '', idUser: '', title : this.title, description : this.description, complete : false}).subscribe(
       (ok : boolean) => {
         if(!ok)
-          return
-        console.log("INSERIU")
+          return  
       }
     )
     this.onSendClick.emit(1);

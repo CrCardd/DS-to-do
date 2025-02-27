@@ -32,7 +32,8 @@ export class TaskService {
   delete(id : string | undefined) {
     if(id === undefined)
       return;
-    return this.http.delete<User>(this.api + '/task/'+ id, {observe: 'response'})
+    console.log(this.api + '/task/'+ id)
+    return this.http.delete(this.api + '/task/'+ id, {observe: 'response'})
       .pipe(map(res => {
           return res.ok
       }))

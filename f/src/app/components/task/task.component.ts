@@ -24,7 +24,6 @@ export class TaskComponent {
   isComplete : boolean = false;
 
   delete(id : string | undefined) {
-    console.log(id)
     this.service.delete(id);
     this.OnDelete.emit('')
   }

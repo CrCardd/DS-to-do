@@ -3,9 +3,9 @@ import Task from '../model/Task';
 
 export default class TaskController {
     static async create(req : Request, res : Response) {
-        const { title, description, complete } = req.body
+        const { idUser, title, description, complete } = req.body
         try{
-            const task = new Task({title, description, complete})
+            const task = new Task({idUser, title, description, complete})
             await task.save()
             res.status(200).send({message : `Tarefa recebida com sucesso!`});
         }
@@ -27,10 +27,10 @@ export default class TaskController {
         }
     }
     static async delete(req : Request, res : Response) {
-        const {_id} = req.params
+        const id = req.params.id
         try
         {
-            await Task.findByIdAndDelete(_id);
+            await Task.findByIdAndDelete(id);
             res.status(200).send({message : "tarefa deletada com sucesso!"})
         } catch(e)
         {
