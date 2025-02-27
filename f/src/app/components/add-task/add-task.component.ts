@@ -20,7 +20,7 @@ export class AddTaskComponent {
   description : string = ""
 
   addNew() {
-    this.service.post({title : this.title, description : this.description, complete : false}).subscribe(
+    this.service.post({_id: '', title : this.title, description : this.description, complete : false}).subscribe(
       (ok : boolean) => {
         if(!ok)
           return

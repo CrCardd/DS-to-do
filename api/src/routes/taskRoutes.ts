@@ -7,5 +7,6 @@ const router: Router = express.Router();
 router
     .post('/', TaskController.create)
     .get('/', TaskController.search)
+    .delete('/', TaskController.delete)
 
 export default router;

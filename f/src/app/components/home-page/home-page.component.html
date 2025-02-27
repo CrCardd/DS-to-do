@@ -1,6 +1,6 @@
 <p>home-page works!</p>
 @for (task of (tasks | async)?.tasks; track $index) {
-    <app-task [task]="task"></app-task>
+    <app-task (OnDelete)="updateTasks()" [task]="task"></app-task>
 }
 
 <app-add-task (onSendClick)="updateTasks()"></app-add-task>
